@@ -571,6 +571,7 @@ struct file_operations scull_fops = {
  */
 void scull_cleanup_module(void)
 {
+	printk(KERN_ALERT "Unload scull\n");
 	int i;
 	dev_t devno = MKDEV(scull_major, scull_minor);
 
@@ -615,6 +616,7 @@ static void scull_setup_cdev(struct scull_dev *dev, int index)
 
 int scull_init_module(void)
 {
+	printk(KERN_ALERT "Load scull\n");
 	int result, i;
 	dev_t dev = 0;
 
