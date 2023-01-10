@@ -571,10 +571,11 @@ struct file_operations scull_fops = {
  */
 void scull_cleanup_module(void)
 {
-	printk(KERN_ALERT "Unload scull\n");
 	int i;
 	dev_t devno = MKDEV(scull_major, scull_minor);
 
+	printk(KERN_ALERT "Unload scull\n");
+	
 	/* Get rid of our char dev entries */
 	if (scull_devices) {
 		for (i = 0; i < scull_nr_devs; i++) {
@@ -616,9 +617,10 @@ static void scull_setup_cdev(struct scull_dev *dev, int index)
 
 int scull_init_module(void)
 {
-	printk(KERN_ALERT "Load scull\n");
 	int result, i;
 	dev_t dev = 0;
+
+	printk(KERN_ALERT "Load scull\n");
 
 	/*
 	 * Get a range of minor numbers to work with, asking for a dynamic
